@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React!React!React!</title>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <style>
+        #container {
+            padding: 50px;
+            background-color: #eee;
+        }
+
+        #container h1 {
+            font-size: 48px;
+            font-family: sans-serif;
+            color: #0080A8;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+        // The ReactDOM is one of the most frequently user method in the React Universe
+        // This method need two arguments: The HTML-like element and the location in the DOM
+        // that React will render the JSX
+        const myProfile =
+            <div>
+                <h3>Batman</h3>
+                <h3>Iron Man</h3>
+                <h3>Nicolas Cage</h3>
+                <h3>Mega Man</h3>
+            </div>;
+
+        let destination = document.querySelector('#container');
+        ReactDOM.render(
+            myProfile,
+            destination
+        );
+
+        function getDistance(speed, time){
+            var result = speed * time;
+            console.log(formatDistance(result));
+        }
+
+        function formatDistance(distance){
+            return distance + "km";
+        }
+
+        getDistance(100, 60)
+        
+        
+        
+        
+        
+        
+        
+        
+        // class Person extends React.Component {
+        //     constructor(props) {
+        //         super(props);
+        //         this.state = {
+        //             name: '',
+        //             age: ''
+        //         }
+        //     }
+
+        //     componentDidMount(){
+        //         this.timerName = setInterval(() => this.changeValues(), 3000)
+        //     }
+
+        //     componentWillUnmount(){
+        //         clearInterval(this.timerName)
+        //     }
+
+        //     changeValues() {
+        //         this.setState({
+        //             name: 'Alexandre',
+        //             age: 24 + ' y.o'
+        //         })
+        //     }
+
+        //     render() {
+        //         return (
+        //             <div>
+        //                 <h1>Name: {this.state.name}</h1>
+        //                 <h3>Age: {this.state.age}</h3>
+        //             </div>
+        //         );
+        //     }
+        // }
+
+        // ReactDOM.render(
+        //     <Person />,
+        //     destination
+        // );
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work with Events</title>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <style>
+        #container {
+            padding: 50px;
+            background-color: #FFF;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+        let destination = document.querySelector("#container");
+
+        class Counter extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.textStyle = {
+                    fontSize: 72,
+                    fontFamily: "sans-serif",
+                    color: "#333",
+                    fontWeight: "bold"
+                };
+            }
+
+            render() {
+                return (
+                    <div style={this.textStyle}>
+                        {this.props.display}
+                    </div>
+                )
+            }
+        }
+
+        class CounterParent extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    count: 0
+                }
+                this.backgroundStyle = {
+                    padding: 50,
+                    backgroundColor: "#FFC53A",
+                    width: 250,
+                    height: 100,
+                    borderRadius: 10,
+                    textAlign: "center"
+                }
+                this.buttonStyle = {
+                    fontSize: "1em",
+                    width: 30,
+                    height: 30,
+                    fontFamily: "sans-serif",
+                    color: "#333",
+                    fontWeight: "bold",
+                    lineHeight: "3px"
+                }
+                this.incrementCounter = this.incrementCounter.bind(this);
+            }
+
+            incrementCounter(e) {
+                let currentCount = this.state.count;
+
+                if (e.shiftKey) {
+                    currentCount += 10;
+                } else {
+                    currentCount++;
+                }
+                console.log(this);
+                this.setState({
+                    count: currentCount
+                });
+            }
+            componentWillUpdate(newProps, newState) {
+                console.log("componentWillUpdate: Component is about to update!");
+            }
+            componentDidUpdate(currentProps, currentState) {
+                console.log("componentDidUpdate: Component just updated!");
+            }
+            componentWillMount() {
+                console.log("componentWillMount: Component is about to mount!");
+            }
+            componentDidMount() {
+                console.log("componentDidMount: Component just mounted!");
+            }
+            componentWillUnmount() {
+                console.log("componentWillUnmount: Component is about to be removed from the DOM!");
+            }
+            shouldComponentUpdate(newProps, newState) {
+                console.log("shouldComponentUpdate: Should component update?");
+                if (newState.count < 5) {
+                    console.log("shouldComponentUpdate: Component should update!");
+                    return true;
+                } else {
+                    ReactDOM.unmountComponentAtNode(destination);
+                    console.log("shouldComponentUpdate: Component should not update!");
+                    return false;
+                }
+            }
+            componentWillReceiveProps(newProps) {
+                console.log("componentWillReceiveProps: Component will get new props!");
+            }
+            render() {
+                return (
+                    <div style={this.backgroundStyle}>
+                        <Counter display={this.state.count} />
+                        { /*<button onClick={this.incrementCounter} style={this.buttonStyle}>+</button> */}
+                        <PlusButton clickHandler={this.incrementCounter} />
+                    </div>
+                )
+            }
+        }
+
+        class PlusButton extends React.Component {
+            constructor(props) {
+                super(props);
+            }
+
+            render() {
+                return (
+                    <button onClick={this.props.clickHandler}>
+                        +
+                    </button>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <div>
+                <CounterParent />
+            </div>,
+            document.querySelector("#container")
+        )
+
+    </script>
+</body>
+
+</html>

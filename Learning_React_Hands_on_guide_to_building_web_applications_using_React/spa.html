@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <!-- <script src="https://npmcdn.com/react-router/umd/ReactRouter.min.js"></script>    -->
+    <script src="https://unpkg.com/browse/react-router@5.2.0/umd/react-router.min.js"></script>
+    <title>SPA!</title>
+    <style>
+        body {
+            background-color: #FFCC00;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1,
+        h2,
+        p,
+        ul,
+        li {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        ul.header li {
+            display: inline;
+            list-style-type: none;
+            margin: 0;
+        }
+
+        ul.header {
+            background-color: #111;
+            padding: 0;
+        }
+
+        ul.header li a {
+            color: #FFF;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 20px;
+            display: inline-block;
+        }
+
+        .content {
+            background-color: #FFF;
+            padding: 20px;
+        }
+
+        .content h2 {
+            padding: 0;
+            margin: 0;
+        }
+
+        .content li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+        // var { Router,
+        //     Route,
+        //     IndexRoute,
+        //     IndexLink,
+        //     Link } = ReactRouter;
+        let destination = document.querySelector("#container")
+
+        var App = React.createClass({
+            render: function () {
+                return (
+                    <div>
+                        <h1>Simple SPA</h1>
+                        <ul className="header">
+                            <li>Home</li>
+                            <li>Stuff</li>
+                            <li>Contact</li>
+                        </ul>
+                        <div className="content">
+                            <Home />
+                        </div>
+                    </div>
+                )
+            }
+        })
+
+        var Home = React.createClass({
+            render: function () {
+                return (
+                    <div>
+                        <h2>HELLO!</h2>
+                        <p>Cras facilisis urna ornare ex volutpat, et convallis erat elementum. Ut aliquam, ipsum vitae gravida suscipit, metus dui bibendum est, eget rhoncus nibh metus nec massa. Maecenas hendrerit laoreet augue nec molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                        <p>Duis a turpis sed lacus dapibus elementum sed eu lectus.</p>
+                    </div>
+                )
+            }
+        })
+
+
+        ReactDOM.render(
+            // <Router>
+            //     <Route path="/" component={App}>
+            //     </Route>
+            // </Router>,
+            <div>
+                <App />
+            </div>,
+            destination
+        );
+    </script>
+</body>
+
+</html>

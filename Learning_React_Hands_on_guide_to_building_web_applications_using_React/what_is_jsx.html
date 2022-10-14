@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React How JSX Works</title>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <style>
+        #container {
+            padding: 50px;
+            background-color: #FFF;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+       
+        // THIS IS HOW REACT WORKS BEHIND-THE-SCENES WITH BABEL
+        var Card = React.createClass({
+            displayName: "Card",
+            render: function render() {
+                var cardStyle = {
+                    height: 200,
+                    width: 150,
+                    padding: 0,
+                    backgroundColor: "#FFF",
+                    WebkitFilter: "drop-shadow(0px 0px 5px #666)",
+                    filter: "drop-shadow(0px 0px 5px #666)"
+                };
+
+                return React.createElement(
+                    "div",
+                    { style: cardStyle },
+                    React.createElement(Square, { color: this.props.color }),
+                    React.createElement(Label, { color: this.props.color })
+                );
+            }
+        });
+
+        ReactDOM.render(
+            <div>
+                <Card color="#FF6663" />
+            </div>, document.querySelector("#container")
+        );
+    </script>
+</body>
+
+</html>
